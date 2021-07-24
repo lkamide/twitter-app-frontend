@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '../services/apis';
 import { FormLabel, Grid, Column, Row, InlineLoading, Search } from 'carbon-components-react';
 import Chart from './chart';
-import { Location16 , Chat16} from '@carbon/icons-react';
+import { Location16 } from '@carbon/icons-react';
 
 export default function Home() {
   const [value, setValue] = useState('');

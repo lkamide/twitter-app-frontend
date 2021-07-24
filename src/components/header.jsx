@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HeaderName, Header, Row, Grid } from 'carbon-components-react';
+import { HeaderName, Header, Row } from 'carbon-components-react';
 import logo from '../twitter.svg';
 
 import './style.css'
