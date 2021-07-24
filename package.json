@@ -2,7 +2,9 @@
   "name": "twitter-app",
   "version": "0.1.0",
   "engines": {
-    "node": "12.x"
+    "node": "12.13.0",
+    "yarn": "1.21.1",
+    "npm": "5.6.0"
   },
   "private": true,
   "dependencies": {
