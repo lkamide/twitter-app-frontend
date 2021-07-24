@@ -1,6 +1,9 @@
 {
   "name": "twitter-app",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@carbon/charts": "^0.41.82",
