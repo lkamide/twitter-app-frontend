@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LineChart } from "@carbon/charts-react";
 import "@carbon/charts/styles.css";
-import './style.css'
+// import './style.css'
 function Chart() {
   return class extends Component {
     constructor(props) {
