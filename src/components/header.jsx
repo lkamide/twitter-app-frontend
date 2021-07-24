@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HeaderName, Header, Row } from 'carbon-components-react';
 import logo from '../twitter.svg';
 
-// import './style.css'
+import './style.css'
 
 function HeaderComponent() {
   return class extends Component {
