@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LineChart } from "@carbon/charts-react";
 import "@carbon/charts/styles.css";
-
+import './style.css'
 function Chart() {
   return class extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ function Chart() {
         // data : props.counts,
         data: props.counts,
         options : {
-          "title": "Line (time series)",
+          // "title": "Line (time series)",
           "axes": {
             "bottom": {
               "title": "Last 7 days",
@@ -36,6 +36,12 @@ function Chart() {
           "curve": "curveMonotoneX",
           "data": {
             "loading": props.counts.length > 0  ? false : true
+          },
+          "color": {
+            "scale": {
+              "user": "#1DA1F2"
+            }
+            
           },
           "height": "400px"
         }
