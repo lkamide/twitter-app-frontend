@@ -1,0 +1,24 @@
+
+.headerColor { 
+  background: #161616 !important;
+  color: white;
+}
+
+.App-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.coluna {
+  background:white;
+}
+
+.bold { 
+  font-weight: bold !important;
+}
+
+body{
+  background:#e0e0e0
+}
