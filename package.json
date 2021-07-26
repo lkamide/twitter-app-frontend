@@ -2,6 +2,9 @@
   "name": "twitter-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "yarn": "1.21.1"
+  },
   "dependencies": {
     "@babel/core": "^7.14.8",
     "@carbon/charts": "^0.41.82",
