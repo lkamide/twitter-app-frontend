@@ -22,3 +22,17 @@
 body{
   background:#e0e0e0
 }
+
+.user-info {
+  word-wrap: break-word;
+  text-align: justify ;
+}
+.user-info h5{
+  text-align: center ;
+}
+
+.user-logo {
+  padding-top: 20px;
+  width: 68% ;
+  border-radius: 100%;
+}
