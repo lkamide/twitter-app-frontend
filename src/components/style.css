@@ -36,3 +36,49 @@ body{
   width: 68% ;
   border-radius: 100%;
 }
+
+.loginForm {
+  background-color: white;
+  margin-right: 20rem;
+  margin-left: 20rem;
+  margin-top: 10%;
+  padding: 67px;
+  height: 36rem;
+}
+.loginFields {
+  margin-right: 10%;
+  margin-left: 10%;
+  text-align: center;
+}
+
+.loginField {
+  margin-top: 5px !important;
+}
+.btnLogin {
+  text-align: right !important;
+}
+.logoLogin {
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  width: 12%;
+}
+
+.tweet-image {
+  padding: 5px;
+  width: 300px;
+}
+
+.chart {
+  fill: black;
+}
+
+.bx--cc--skeleton-lines rect.chart-skeleton-backdrop {
+  fill: #e0e0e0;
+}
+
+.bx--chart-holder {
+  background-color: #e0e0e0;
+}

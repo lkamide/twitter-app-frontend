@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import api from '../services/apis';
-import { FormLabel, Grid, Column, Row, InlineLoading, Search } from 'carbon-components-react';
+import { FormLabel, Grid, Column, Row, InlineLoading, Search, Modal } from 'carbon-components-react';
 import Chart from './chart';
 import { Location16 } from '@carbon/icons-react';
 import { User } from '@carbon/pictograms-react';
 import Notification from './notification';
-
+import Lightbox from "react-awesome-lightbox";
 
 export default function Home() {
   const [value, setValue] = useState('');
@@ -19,6 +19,7 @@ export default function Home() {
   const [description, setDescription] = useState('Searching...');
   const [ariaLive, setAriaLive] = useState('off');
   const [notification, setNotification] = useState({});
+  const [image, setImage] = useState("");
 
 
   const handleEnter = (event) => {
@@ -58,7 +59,6 @@ export default function Home() {
     setIsSearching(true);
 
     await api.get(`/userInformation/${value}`).then(response => {
-      console.log(response)
       setSuccess(true);
       setAriaLive('assertive');
       setDescription('mounting..');
@@ -66,13 +66,19 @@ export default function Home() {
       setUser(response.data.user)
 
       response.data.data.statuses.forEach(data => {
-        setTwitte(twitte => [...twitte, { text: data.text, location: data.user.location }])
+        setTwitte(twitte => [...twitte, { text: data.text, location: data.user.location, media: data.extended_entities?.media[0].media_url }])
       })
       response.data.count.data.forEach(data => {
         setTwitteCount(twitteCount => [...twitteCount, { date: data.start, value: data.tweet_count, group: "user" }])
       })
       response.data.lastTweets.data.forEach(data => {
-        setLastTweets(lastTweets => [...lastTweets, { text: data.text }])
+        let attach_url 
+        if(data.attachments){
+          response.data.lastTweets.includes.media.find( (e) => { 
+              return e.media_key ===  data.attachments.media_keys[0] ? attach_url = e.url : ""
+          } ) 
+        }
+        setLastTweets(lastTweets => [...lastTweets, { text: data.text , attach: attach_url }])
       })
 
     }).then(() => {
@@ -91,7 +97,8 @@ export default function Home() {
 
   return (
     <>
-      <Grid >
+      <Grid  >
+        {image && <Lightbox onClose={e=>setImage("")} image={image}/>  }
       {Object.keys(notification).length > 0 && <Notification notification={notification} />  }
         <Row className="coluna">
           <Search placeHolderText="type here the user..." onChange={handleChange} onKeyPress={handleEnter} />
@@ -105,7 +112,7 @@ export default function Home() {
           }
         </Row>
         <Row >
-          <Column>
+          <Column sm={1} md={2} lg={4}>
             {!user.profile_image ?
               <User className="App-logo user-logo" /> :
               <div className="user-info" >
@@ -121,8 +128,15 @@ export default function Home() {
                 <hr />
               </div>
             }
+
+            <br />
+            <h5 className="user-info">
+              Tweet count
+            </h5>
+            <br />
+            <Chart key={twitteCount} counts={twitteCount} />    
           </Column>
-          <Column className="coluna">
+          <Column className="coluna" sm={1} md={2} lg={4}>
             <br />
             <h4>
               Last mentionings:
@@ -131,7 +145,8 @@ export default function Home() {
               return <>
                 <div >
                   <br />
-                  {twitte.text && <FormLabel key={twitte.text + index} >  {twitte.text}  </FormLabel>}
+                  {twitte.text && <FormLabel key={twitte.text + index} >  {twitte.text} {twitte.media}  </FormLabel>}
+                  {twitte.media  && <img className="tweet-image" src={twitte.media} alt={"logo"}  onClick={() => setImage(twitte.media) } />  }
                   <br />
                   {twitte.location && <FormLabel className="bold" key={twitte.location + index} > <Location16 fill="black" /> {twitte.location} </FormLabel>}
                 </div>
@@ -139,7 +154,7 @@ export default function Home() {
             })}
 
           </Column>
-          <Column className="coluna">
+          <Column className="coluna" sm={1} md={2} lg={4}>
             <br />
             <h4>Last twittes: </h4>
             <br />
@@ -147,17 +162,13 @@ export default function Home() {
               return <>
                 <br />
                 <br />
-                {twitte.text && <FormLabel key={twitte.text}>{twitte.text}</FormLabel>}
+                {twitte.text && <FormLabel key={twitte.text}>{twitte.text} {twitte.attach} </FormLabel>}
+                {twitte.attach && 
+                  <img className="tweet-image" src={twitte.attach} alt={"logo"}  onClick={() => setImage(twitte.attach) } /> 
+                }
+        
               </>
             })}
-          </Column>
-          <Column className="coluna">
-            <br />
-            <h4>
-              Tweet count query: {value}
-            </h4>
-            <br />
-            <Chart key={twitteCount} counts={twitteCount} />
           </Column>
         </Row>
       </Grid>

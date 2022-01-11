@@ -55,7 +55,8 @@ function Chart() {
  
     render() {
       return 	<>
-       <LineChart
+       <LineChart 
+          className="chart"
           key={this.state.data}
           data={this.state.data}
           options={this.state.options}>
