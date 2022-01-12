@@ -112,7 +112,7 @@ export default function Home() {
           }
         </Row>
         <Row >
-          <Column sm={1} md={2} lg={4}>
+          <Column sm={4} md={2} lg={4}>
             {!user.profile_image ?
               <User className="App-logo user-logo" /> :
               <div className="user-info" >
@@ -136,7 +136,7 @@ export default function Home() {
             <br />
             <Chart key={twitteCount} counts={twitteCount} />    
           </Column>
-          <Column className="coluna" sm={1} md={2} lg={4}>
+          <Column className="coluna" sm={4} md={2} lg={4}>
             <br />
             <h4>
               Last mentionings:
@@ -154,7 +154,7 @@ export default function Home() {
             })}
 
           </Column>
-          <Column className="coluna" sm={1} md={2} lg={4}>
+          <Column className="coluna" sm={4} md={2} lg={4}>
             <br />
             <h4>Last twittes: </h4>
             <br />

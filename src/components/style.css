@@ -13,6 +13,7 @@
 
 .coluna {
   background:white;
+  word-break: break-all
 }
 
 .bold { 
